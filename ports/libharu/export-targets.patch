@@ -8,7 +8,7 @@ index b87af66..10ec58f 100644
  
 +if(LIBHPDF_SHARED)
 +  if(WIN32 AND NOT CYGWIN)
-+    set_target_properties(hpdf PROPERTIES DEFINE_SYMBOL HPDF_DLL_MAKE)
++    set_target_properties(hpdf PROPERTIES DEFINE_SYMBOL HPDF_DLL)
 +  endif()
 +endif()
 +

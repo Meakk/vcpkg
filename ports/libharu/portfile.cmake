@@ -40,23 +40,6 @@ file(REMOVE_RECURSE
     "${CURRENT_PACKAGES_DIR}/INSTALL"
 )
 
-file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
-file(READ "${CURRENT_PACKAGES_DIR}/include/hpdf.h" _contents)
-if(VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
-    string(REPLACE "#ifdef HPDF_DLL\n" "#if 1\n" _contents "${_contents}")
-else()
-    string(REPLACE "#ifdef HPDF_DLL\n" "#if 0\n" _contents "${_contents}")
-endif()
-file(WRITE "${CURRENT_PACKAGES_DIR}/include/hpdf.h" "${_contents}")
-
-file(READ "${CURRENT_PACKAGES_DIR}/include/hpdf_types.h" _contents)
-if(VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
-    string(REPLACE "#ifdef HPDF_DLL\n" "#if 1\n" _contents "${_contents}")
-else()
-    string(REPLACE "#ifdef HPDF_DLL\n" "#if 0\n" _contents "${_contents}")
-endif()
-file(WRITE "${CURRENT_PACKAGES_DIR}/include/hpdf_types.h" "${_contents}")
-
 vcpkg_copy_pdbs()
 file(INSTALL "${CMAKE_CURRENT_LIST_DIR}/usage" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}")
 file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
